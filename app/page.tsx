@@ -3,11 +3,9 @@ import { auth } from '@clerk/nextjs/server'
 import { Show, RedirectToSignIn, UserButton } from '@clerk/nextjs'
 
 export default async function Page() {
-   const { isAuthenticated } = await auth()
     await auth.protect()
   
 
-    if (isAuthenticated){
   return (
     <>
     <Show when="signed-in">
@@ -21,5 +19,5 @@ export default async function Page() {
     </>
   )
 }
-}
+
 
