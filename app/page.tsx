@@ -1,6 +1,7 @@
 'use server'
 import { auth } from '@clerk/nextjs/server'
 import { Show, RedirectToSignIn, UserButton } from '@clerk/nextjs'
+import MyButtons from './buttons'
 
 export default async function Page() {
     await auth.protect()
@@ -16,6 +17,11 @@ export default async function Page() {
       <Show when="signed-out">
         <RedirectToSignIn />
       </Show>
+      <main>
+        <div className="flex justify-center">
+          <MyButtons/>
+          </div>
+      </main>
     </>
   )
 }
