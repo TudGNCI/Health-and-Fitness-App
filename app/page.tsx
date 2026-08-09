@@ -1,4 +1,4 @@
-'use server'
+
 import { auth } from '@clerk/nextjs/server'
 import { Show, RedirectToSignIn, UserButton } from '@clerk/nextjs'
 import MyButtons from './buttons'
