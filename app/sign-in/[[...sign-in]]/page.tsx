@@ -4,7 +4,7 @@ import { SignIn } from '@clerk/nextjs'
 export default function Page() {
   return (
     <div className="flex h-[66.66vh] items-center justify-center pt-40">
-     <SignIn 
+      <SignIn 
         appearance={{
             variables: {
               colorPrimary: '#BCBEF5',

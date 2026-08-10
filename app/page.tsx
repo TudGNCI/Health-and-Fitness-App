@@ -19,8 +19,10 @@ export default async function Page() {
         <Show when="signed-out">
           <RedirectToSignIn />
         </Show>
-        <div className = "flex-1 flex justify-center items-center"><Welcome/></div>
-        <section className="flex-1 flex justify-center items-center">
+        <div className = "w-full h-[10vh] flex justify-center items-center pt-[20vh]">
+          <Welcome/>
+        </div>
+        <section className="flex-auto flex justify-center items-center pb-[15vh] pt-[5vh]">
           <MyButtons/>
         </section>
       </main>

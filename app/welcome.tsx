@@ -7,6 +7,6 @@ export default function Welcome() {
 
   if(isSignedIn)
   return (
-  <div>Welcome {user?.username}!</div>
+  <div className="pt-[5vh] text-5xl">Welcome {user?.username}!</div>
   )
 }
