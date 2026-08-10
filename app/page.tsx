@@ -12,7 +12,7 @@ export default async function Page() {
     <>
       <main className="min-h-screen flex flex-col">
         <Show when="signed-in">
-          <header className="flex justify-end items-center p-4 gap-4 h-16 bg-blue-500">
+          <header className="flex justify-end items-center p-4 gap-4 h-16 bg-blue-500 shadow-md shadow-zinc-500">
             <UserButton />
           </header>
         </Show>
