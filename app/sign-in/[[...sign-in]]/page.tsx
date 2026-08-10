@@ -1,9 +1,10 @@
+'use client'
 import { SignIn } from '@clerk/nextjs'
 
 export default function Page() {
   return (
-    <div className="flex h-[66.66vh] items-center justify-center pt-30">
-     <SignIn 
+    <div className="flex h-[66.66vh] items-center justify-center pt-40">
+      <SignIn 
         appearance={{
             variables: {
               colorPrimary: '#BCBEF5',
