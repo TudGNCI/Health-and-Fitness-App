@@ -14,9 +14,24 @@ datasource db {
 
 model JournalEntry {
   id          Int @id @default(autoincrement())
-  userId      String @unique
-  date        DateTime
+  userId      String
+  date        String 
   content     String
   createdAt   DateTime @default(now())
   updateAt    DateTime @updatedAt
+
+  @@unique([userId, date])
 }
+
+model BodyMeasurementLog {
+  id          Int @id @default(autoincrement())
+  userId      String
+  chest       Float
+  waist       Float
+  arms        Float
+  hips        Float
+  date        DateTime @default(now())
+
+  @@index([userId])
+}
+

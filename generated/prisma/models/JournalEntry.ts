@@ -37,7 +37,7 @@ export type JournalEntrySumAggregateOutputType = {
 export type JournalEntryMinAggregateOutputType = {
   id: number | null
   userId: string | null
-  date: Date | null
+  date: string | null
   content: string | null
   createdAt: Date | null
   updateAt: Date | null
@@ -46,7 +46,7 @@ export type JournalEntryMinAggregateOutputType = {
 export type JournalEntryMaxAggregateOutputType = {
   id: number | null
   userId: string | null
-  date: Date | null
+  date: string | null
   content: string | null
   createdAt: Date | null
   updateAt: Date | null
@@ -188,7 +188,7 @@ export type JournalEntryGroupByArgs<ExtArgs extends runtime.Types.Extensions.Int
 export type JournalEntryGroupByOutputType = {
   id: number
   userId: string
-  date: Date
+  date: string
   content: string
   createdAt: Date
   updateAt: Date
@@ -220,7 +220,7 @@ export type JournalEntryWhereInput = {
   NOT?: Prisma.JournalEntryWhereInput | Prisma.JournalEntryWhereInput[]
   id?: Prisma.IntFilter<"JournalEntry"> | number
   userId?: Prisma.StringFilter<"JournalEntry"> | string
-  date?: Prisma.DateTimeFilter<"JournalEntry"> | Date | string
+  date?: Prisma.StringFilter<"JournalEntry"> | string
   content?: Prisma.StringFilter<"JournalEntry"> | string
   createdAt?: Prisma.DateTimeFilter<"JournalEntry"> | Date | string
   updateAt?: Prisma.DateTimeFilter<"JournalEntry"> | Date | string
@@ -237,15 +237,16 @@ export type JournalEntryOrderByWithRelationInput = {
 
 export type JournalEntryWhereUniqueInput = Prisma.AtLeast<{
   id?: number
-  userId?: string
+  userId_date?: Prisma.JournalEntryUserIdDateCompoundUniqueInput
   AND?: Prisma.JournalEntryWhereInput | Prisma.JournalEntryWhereInput[]
   OR?: Prisma.JournalEntryWhereInput[]
   NOT?: Prisma.JournalEntryWhereInput | Prisma.JournalEntryWhereInput[]
-  date?: Prisma.DateTimeFilter<"JournalEntry"> | Date | string
+  userId?: Prisma.StringFilter<"JournalEntry"> | string
+  date?: Prisma.StringFilter<"JournalEntry"> | string
   content?: Prisma.StringFilter<"JournalEntry"> | string
   createdAt?: Prisma.DateTimeFilter<"JournalEntry"> | Date | string
   updateAt?: Prisma.DateTimeFilter<"JournalEntry"> | Date | string
-}, "id" | "userId">
+}, "id" | "userId_date">
 
 export type JournalEntryOrderByWithAggregationInput = {
   id?: Prisma.SortOrder
@@ -267,7 +268,7 @@ export type JournalEntryScalarWhereWithAggregatesInput = {
   NOT?: Prisma.JournalEntryScalarWhereWithAggregatesInput | Prisma.JournalEntryScalarWhereWithAggregatesInput[]
   id?: Prisma.IntWithAggregatesFilter<"JournalEntry"> | number
   userId?: Prisma.StringWithAggregatesFilter<"JournalEntry"> | string
-  date?: Prisma.DateTimeWithAggregatesFilter<"JournalEntry"> | Date | string
+  date?: Prisma.StringWithAggregatesFilter<"JournalEntry"> | string
   content?: Prisma.StringWithAggregatesFilter<"JournalEntry"> | string
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"JournalEntry"> | Date | string
   updateAt?: Prisma.DateTimeWithAggregatesFilter<"JournalEntry"> | Date | string
@@ -275,7 +276,7 @@ export type JournalEntryScalarWhereWithAggregatesInput = {
 
 export type JournalEntryCreateInput = {
   userId: string
-  date: Date | string
+  date: string
   content: string
   createdAt?: Date | string
   updateAt?: Date | string
@@ -284,7 +285,7 @@ export type JournalEntryCreateInput = {
 export type JournalEntryUncheckedCreateInput = {
   id?: number
   userId: string
-  date: Date | string
+  date: string
   content: string
   createdAt?: Date | string
   updateAt?: Date | string
@@ -292,7 +293,7 @@ export type JournalEntryUncheckedCreateInput = {
 
 export type JournalEntryUpdateInput = {
   userId?: Prisma.StringFieldUpdateOperationsInput | string
-  date?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  date?: Prisma.StringFieldUpdateOperationsInput | string
   content?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updateAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -301,7 +302,7 @@ export type JournalEntryUpdateInput = {
 export type JournalEntryUncheckedUpdateInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
   userId?: Prisma.StringFieldUpdateOperationsInput | string
-  date?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  date?: Prisma.StringFieldUpdateOperationsInput | string
   content?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updateAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -310,7 +311,7 @@ export type JournalEntryUncheckedUpdateInput = {
 export type JournalEntryCreateManyInput = {
   id?: number
   userId: string
-  date: Date | string
+  date: string
   content: string
   createdAt?: Date | string
   updateAt?: Date | string
@@ -318,7 +319,7 @@ export type JournalEntryCreateManyInput = {
 
 export type JournalEntryUpdateManyMutationInput = {
   userId?: Prisma.StringFieldUpdateOperationsInput | string
-  date?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  date?: Prisma.StringFieldUpdateOperationsInput | string
   content?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updateAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -327,10 +328,15 @@ export type JournalEntryUpdateManyMutationInput = {
 export type JournalEntryUncheckedUpdateManyInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
   userId?: Prisma.StringFieldUpdateOperationsInput | string
-  date?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  date?: Prisma.StringFieldUpdateOperationsInput | string
   content?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updateAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+}
+
+export type JournalEntryUserIdDateCompoundUniqueInput = {
+  userId: string
+  date: string
 }
 
 export type JournalEntryCountOrderByAggregateInput = {
@@ -430,7 +436,7 @@ export type $JournalEntryPayload<ExtArgs extends runtime.Types.Extensions.Intern
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: number
     userId: string
-    date: Date
+    date: string
     content: string
     createdAt: Date
     updateAt: Date
@@ -859,7 +865,7 @@ export interface Prisma__JournalEntryClient<T, Null = never, ExtArgs extends run
 export interface JournalEntryFieldRefs {
   readonly id: Prisma.FieldRef<"JournalEntry", 'Int'>
   readonly userId: Prisma.FieldRef<"JournalEntry", 'String'>
-  readonly date: Prisma.FieldRef<"JournalEntry", 'DateTime'>
+  readonly date: Prisma.FieldRef<"JournalEntry", 'String'>
   readonly content: Prisma.FieldRef<"JournalEntry", 'String'>
   readonly createdAt: Prisma.FieldRef<"JournalEntry", 'DateTime'>
   readonly updateAt: Prisma.FieldRef<"JournalEntry", 'DateTime'>
