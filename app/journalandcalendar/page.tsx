@@ -8,73 +8,71 @@ import { saveJournalEntry, getJournalEntry, getEntriesWithContent } from "../act
 
 
 export default function Page() {
-    const [selectedDay, setSelectedDay] = useState<Date | undefined>(new Date());
-    const [journalEntry, setJournalEntry] = useState<string>('');
-    const [entryDate, setEntryDate] = useState<Set<string>>(new Set())
+    const [selectedDay, setSelectedDay] = useState < Date | undefined > (new Date());
+    const [journalEntry, setJournalEntry] = useState < string > ('');
+    const [entryDate, setEntryDate] = useState < Set < string >> (new Set())
     const [isSaving, setIsSaving] = useState(false)
-    
 
     useEffect(() => {
-      getEntriesWithContent().then((dates) => 
-        setEntryDate(new Set(dates)))
+        getEntriesWithContent().then((dates) =>
+            setEntryDate(new Set(dates)))
     }, [])
 
     useEffect(() => {
-      console.log('Entry Dates:', Array.from(entryDate))
+        console.log('Entry Dates:', Array.from(entryDate))
     }, [entryDate])
 
-    const handleDateSelect = useCallback(async(date: Date | undefined) => {
-      setSelectedDay(date)
-      if(date){
-        const dateStr = format(date, 'yyyy-MM-dd')
-        const entry = await getJournalEntry(dateStr)
-        setJournalEntry(entry || '')
-      } else {
-        setJournalEntry('')
+    const handleDateSelect = useCallback(async (date: Date | undefined) => {
+        setSelectedDay(date)
+        if (date) {
+            const dateStr = format(date, 'yyyy-MM-dd')
+            const entry = await getJournalEntry(dateStr)
+            setJournalEntry(entry || '')
+        } else {
+            setJournalEntry('')
         }
     }, [])
 
     useEffect(() => {
-      if (!selectedDay) return;
+        if (!selectedDay) return;
 
-      const timer = setTimeout(async () => {
-        setIsSaving(true)
-        const dateStr = format(selectedDay, 'yyyy-MM-dd')
+        const timer = setTimeout(async () => {
+            setIsSaving(true)
+            const dateStr = format(selectedDay, 'yyyy-MM-dd')
 
-        try{
-        await saveJournalEntry(dateStr, journalEntry)
+            try {
+                await saveJournalEntry(dateStr, journalEntry)
 
-        setEntryDate((prev) => {
-          const newSet = new Set(prev);
-          if(journalEntry.trim() === ''){
-            newSet.delete(dateStr);
-          } else {
-            newSet.add(dateStr);
-          }
-          return newSet;
-        })
-    
-      } catch (error) {
-        console.error('Save failed:', error)
-      } finally {
-        setIsSaving(false)
-      }
+                setEntryDate((prev) => {
+                    const newSet = new Set(prev);
+                    if (journalEntry.trim() === '') {
+                        newSet.delete(dateStr);
+                    } else {
+                        newSet.add(dateStr);
+                    }
+                    return newSet;
+                })
+
+            } catch (error) {
+                console.error('Save failed:', error)
+            } finally {
+                setIsSaving(false)
+            }
         }, 200)
-        
-        return () => clearTimeout(timer)
-      }, [journalEntry, selectedDay])
-    
 
-   const handleChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => setJournalEntry (e.target.value)
+        return () => clearTimeout(timer)
+    }, [journalEntry, selectedDay])
+
+    const handleChange = (e: React.ChangeEvent < HTMLTextAreaElement > ) => setJournalEntry(e.target.value)
 
     const footer = selectedDay ? (
-    <p>You selected {format(selectedDay, 'PPP')}.</p>
-  ) : (
-    <p>Please pick a day.</p>
-  );
+        <p>You selected {format(selectedDay, 'PPP')}.</p>
+    ) : (
+        <p>Please pick a day.</p>
+    );
 
-  return (
-    <main>
+    return (
+        <main>
       <div className="flex justify-center items-center pb-[6vh] pt-[8vh] text-6xl">
         <h1>Journal and Calendar</h1>
         </div>
@@ -109,5 +107,5 @@ export default function Page() {
         className="fixed right-4 bottom-4 bg-cyan-600 hover:bg-cyan-700 px-7 py-4 rounded-lg shadow-lg shadow-zinc-500"> BACK
         </Link>
     </main>
-  )
+    )
 }

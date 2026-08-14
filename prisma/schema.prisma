@@ -23,15 +23,21 @@ model JournalEntry {
   @@unique([userId, date])
 }
 
-model BodyMeasurementLog {
+model User {
+  id           Int @id @default(autoincrement())
+  clerkId      String @unique
+  measurements Measurement[]
+}
+
+model Measurement {
   id          Int @id @default(autoincrement())
-  userId      String
   chest       Float
   waist       Float
   arms        Float
   hips        Float
   date        DateTime @default(now())
 
-  @@index([userId])
+  userId Int
+  user   User @relation(fields: [userId], references: [id], onDelete: Cascade)
 }
 

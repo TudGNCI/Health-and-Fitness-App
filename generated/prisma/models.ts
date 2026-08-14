@@ -9,4 +9,5 @@
  * 🟢 You can import this file directly.
  */
 export type * from './models/JournalEntry'
+export type * from './models/Measurement'
 export type * from './commonInputTypes'

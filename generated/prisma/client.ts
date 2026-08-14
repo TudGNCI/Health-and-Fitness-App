@@ -46,3 +46,8 @@ export { Prisma }
  * 
  */
 export type JournalEntry = Prisma.JournalEntryModel
+/**
+ * Model Measurement
+ * 
+ */
+export type Measurement = Prisma.MeasurementModel

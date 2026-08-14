@@ -51,7 +51,8 @@ export const AnyNull = runtime.AnyNull
 
 
 export const ModelName = {
-  JournalEntry: 'JournalEntry'
+  JournalEntry: 'JournalEntry',
+  Measurement: 'Measurement'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -77,6 +78,19 @@ export const JournalEntryScalarFieldEnum = {
 } as const
 
 export type JournalEntryScalarFieldEnum = (typeof JournalEntryScalarFieldEnum)[keyof typeof JournalEntryScalarFieldEnum]
+
+
+export const MeasurementScalarFieldEnum = {
+  id: 'id',
+  userId: 'userId',
+  chest: 'chest',
+  waist: 'waist',
+  arms: 'arms',
+  hips: 'hips',
+  date: 'date'
+} as const
+
+export type MeasurementScalarFieldEnum = (typeof MeasurementScalarFieldEnum)[keyof typeof MeasurementScalarFieldEnum]
 
 
 export const SortOrder = {
