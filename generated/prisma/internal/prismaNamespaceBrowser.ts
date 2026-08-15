@@ -82,7 +82,7 @@ export type JournalEntryScalarFieldEnum = (typeof JournalEntryScalarFieldEnum)[k
 
 export const MeasurementScalarFieldEnum = {
   id: 'id',
-  userId: 'userId',
+  clerkId: 'clerkId',
   chest: 'chest',
   waist: 'waist',
   arms: 'arms',

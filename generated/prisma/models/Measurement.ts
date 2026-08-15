@@ -44,7 +44,7 @@ export type MeasurementSumAggregateOutputType = {
 
 export type MeasurementMinAggregateOutputType = {
   id: number | null
-  userId: string | null
+  clerkId: string | null
   chest: number | null
   waist: number | null
   arms: number | null
@@ -54,7 +54,7 @@ export type MeasurementMinAggregateOutputType = {
 
 export type MeasurementMaxAggregateOutputType = {
   id: number | null
-  userId: string | null
+  clerkId: string | null
   chest: number | null
   waist: number | null
   arms: number | null
@@ -64,7 +64,7 @@ export type MeasurementMaxAggregateOutputType = {
 
 export type MeasurementCountAggregateOutputType = {
   id: number
-  userId: number
+  clerkId: number
   chest: number
   waist: number
   arms: number
@@ -92,7 +92,7 @@ export type MeasurementSumAggregateInputType = {
 
 export type MeasurementMinAggregateInputType = {
   id?: true
-  userId?: true
+  clerkId?: true
   chest?: true
   waist?: true
   arms?: true
@@ -102,7 +102,7 @@ export type MeasurementMinAggregateInputType = {
 
 export type MeasurementMaxAggregateInputType = {
   id?: true
-  userId?: true
+  clerkId?: true
   chest?: true
   waist?: true
   arms?: true
@@ -112,7 +112,7 @@ export type MeasurementMaxAggregateInputType = {
 
 export type MeasurementCountAggregateInputType = {
   id?: true
-  userId?: true
+  clerkId?: true
   chest?: true
   waist?: true
   arms?: true
@@ -209,7 +209,7 @@ export type MeasurementGroupByArgs<ExtArgs extends runtime.Types.Extensions.Inte
 
 export type MeasurementGroupByOutputType = {
   id: number
-  userId: string
+  clerkId: string
   chest: number
   waist: number
   arms: number
@@ -242,7 +242,7 @@ export type MeasurementWhereInput = {
   OR?: Prisma.MeasurementWhereInput[]
   NOT?: Prisma.MeasurementWhereInput | Prisma.MeasurementWhereInput[]
   id?: Prisma.IntFilter<"Measurement"> | number
-  userId?: Prisma.StringFilter<"Measurement"> | string
+  clerkId?: Prisma.StringFilter<"Measurement"> | string
   chest?: Prisma.FloatFilter<"Measurement"> | number
   waist?: Prisma.FloatFilter<"Measurement"> | number
   arms?: Prisma.FloatFilter<"Measurement"> | number
@@ -252,7 +252,7 @@ export type MeasurementWhereInput = {
 
 export type MeasurementOrderByWithRelationInput = {
   id?: Prisma.SortOrder
-  userId?: Prisma.SortOrder
+  clerkId?: Prisma.SortOrder
   chest?: Prisma.SortOrder
   waist?: Prisma.SortOrder
   arms?: Prisma.SortOrder
@@ -265,7 +265,7 @@ export type MeasurementWhereUniqueInput = Prisma.AtLeast<{
   AND?: Prisma.MeasurementWhereInput | Prisma.MeasurementWhereInput[]
   OR?: Prisma.MeasurementWhereInput[]
   NOT?: Prisma.MeasurementWhereInput | Prisma.MeasurementWhereInput[]
-  userId?: Prisma.StringFilter<"Measurement"> | string
+  clerkId?: Prisma.StringFilter<"Measurement"> | string
   chest?: Prisma.FloatFilter<"Measurement"> | number
   waist?: Prisma.FloatFilter<"Measurement"> | number
   arms?: Prisma.FloatFilter<"Measurement"> | number
@@ -275,7 +275,7 @@ export type MeasurementWhereUniqueInput = Prisma.AtLeast<{
 
 export type MeasurementOrderByWithAggregationInput = {
   id?: Prisma.SortOrder
-  userId?: Prisma.SortOrder
+  clerkId?: Prisma.SortOrder
   chest?: Prisma.SortOrder
   waist?: Prisma.SortOrder
   arms?: Prisma.SortOrder
@@ -293,7 +293,7 @@ export type MeasurementScalarWhereWithAggregatesInput = {
   OR?: Prisma.MeasurementScalarWhereWithAggregatesInput[]
   NOT?: Prisma.MeasurementScalarWhereWithAggregatesInput | Prisma.MeasurementScalarWhereWithAggregatesInput[]
   id?: Prisma.IntWithAggregatesFilter<"Measurement"> | number
-  userId?: Prisma.StringWithAggregatesFilter<"Measurement"> | string
+  clerkId?: Prisma.StringWithAggregatesFilter<"Measurement"> | string
   chest?: Prisma.FloatWithAggregatesFilter<"Measurement"> | number
   waist?: Prisma.FloatWithAggregatesFilter<"Measurement"> | number
   arms?: Prisma.FloatWithAggregatesFilter<"Measurement"> | number
@@ -302,7 +302,7 @@ export type MeasurementScalarWhereWithAggregatesInput = {
 }
 
 export type MeasurementCreateInput = {
-  userId: string
+  clerkId: string
   chest: number
   waist: number
   arms: number
@@ -312,7 +312,7 @@ export type MeasurementCreateInput = {
 
 export type MeasurementUncheckedCreateInput = {
   id?: number
-  userId: string
+  clerkId: string
   chest: number
   waist: number
   arms: number
@@ -321,7 +321,7 @@ export type MeasurementUncheckedCreateInput = {
 }
 
 export type MeasurementUpdateInput = {
-  userId?: Prisma.StringFieldUpdateOperationsInput | string
+  clerkId?: Prisma.StringFieldUpdateOperationsInput | string
   chest?: Prisma.FloatFieldUpdateOperationsInput | number
   waist?: Prisma.FloatFieldUpdateOperationsInput | number
   arms?: Prisma.FloatFieldUpdateOperationsInput | number
@@ -331,7 +331,7 @@ export type MeasurementUpdateInput = {
 
 export type MeasurementUncheckedUpdateInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
-  userId?: Prisma.StringFieldUpdateOperationsInput | string
+  clerkId?: Prisma.StringFieldUpdateOperationsInput | string
   chest?: Prisma.FloatFieldUpdateOperationsInput | number
   waist?: Prisma.FloatFieldUpdateOperationsInput | number
   arms?: Prisma.FloatFieldUpdateOperationsInput | number
@@ -341,7 +341,7 @@ export type MeasurementUncheckedUpdateInput = {
 
 export type MeasurementCreateManyInput = {
   id?: number
-  userId: string
+  clerkId: string
   chest: number
   waist: number
   arms: number
@@ -350,7 +350,7 @@ export type MeasurementCreateManyInput = {
 }
 
 export type MeasurementUpdateManyMutationInput = {
-  userId?: Prisma.StringFieldUpdateOperationsInput | string
+  clerkId?: Prisma.StringFieldUpdateOperationsInput | string
   chest?: Prisma.FloatFieldUpdateOperationsInput | number
   waist?: Prisma.FloatFieldUpdateOperationsInput | number
   arms?: Prisma.FloatFieldUpdateOperationsInput | number
@@ -360,7 +360,7 @@ export type MeasurementUpdateManyMutationInput = {
 
 export type MeasurementUncheckedUpdateManyInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
-  userId?: Prisma.StringFieldUpdateOperationsInput | string
+  clerkId?: Prisma.StringFieldUpdateOperationsInput | string
   chest?: Prisma.FloatFieldUpdateOperationsInput | number
   waist?: Prisma.FloatFieldUpdateOperationsInput | number
   arms?: Prisma.FloatFieldUpdateOperationsInput | number
@@ -370,7 +370,7 @@ export type MeasurementUncheckedUpdateManyInput = {
 
 export type MeasurementCountOrderByAggregateInput = {
   id?: Prisma.SortOrder
-  userId?: Prisma.SortOrder
+  clerkId?: Prisma.SortOrder
   chest?: Prisma.SortOrder
   waist?: Prisma.SortOrder
   arms?: Prisma.SortOrder
@@ -388,7 +388,7 @@ export type MeasurementAvgOrderByAggregateInput = {
 
 export type MeasurementMaxOrderByAggregateInput = {
   id?: Prisma.SortOrder
-  userId?: Prisma.SortOrder
+  clerkId?: Prisma.SortOrder
   chest?: Prisma.SortOrder
   waist?: Prisma.SortOrder
   arms?: Prisma.SortOrder
@@ -398,7 +398,7 @@ export type MeasurementMaxOrderByAggregateInput = {
 
 export type MeasurementMinOrderByAggregateInput = {
   id?: Prisma.SortOrder
-  userId?: Prisma.SortOrder
+  clerkId?: Prisma.SortOrder
   chest?: Prisma.SortOrder
   waist?: Prisma.SortOrder
   arms?: Prisma.SortOrder
@@ -426,7 +426,7 @@ export type FloatFieldUpdateOperationsInput = {
 
 export type MeasurementSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
-  userId?: boolean
+  clerkId?: boolean
   chest?: boolean
   waist?: boolean
   arms?: boolean
@@ -436,7 +436,7 @@ export type MeasurementSelect<ExtArgs extends runtime.Types.Extensions.InternalA
 
 export type MeasurementSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
-  userId?: boolean
+  clerkId?: boolean
   chest?: boolean
   waist?: boolean
   arms?: boolean
@@ -446,7 +446,7 @@ export type MeasurementSelectCreateManyAndReturn<ExtArgs extends runtime.Types.E
 
 export type MeasurementSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
-  userId?: boolean
+  clerkId?: boolean
   chest?: boolean
   waist?: boolean
   arms?: boolean
@@ -456,7 +456,7 @@ export type MeasurementSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.E
 
 export type MeasurementSelectScalar = {
   id?: boolean
-  userId?: boolean
+  clerkId?: boolean
   chest?: boolean
   waist?: boolean
   arms?: boolean
@@ -464,14 +464,14 @@ export type MeasurementSelectScalar = {
   date?: boolean
 }
 
-export type MeasurementOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "userId" | "chest" | "waist" | "arms" | "hips" | "date", ExtArgs["result"]["measurement"]>
+export type MeasurementOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "clerkId" | "chest" | "waist" | "arms" | "hips" | "date", ExtArgs["result"]["measurement"]>
 
 export type $MeasurementPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "Measurement"
   objects: {}
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: number
-    userId: string
+    clerkId: string
     chest: number
     waist: number
     arms: number
@@ -901,7 +901,7 @@ export interface Prisma__MeasurementClient<T, Null = never, ExtArgs extends runt
  */
 export interface MeasurementFieldRefs {
   readonly id: Prisma.FieldRef<"Measurement", 'Int'>
-  readonly userId: Prisma.FieldRef<"Measurement", 'String'>
+  readonly clerkId: Prisma.FieldRef<"Measurement", 'String'>
   readonly chest: Prisma.FieldRef<"Measurement", 'Float'>
   readonly waist: Prisma.FieldRef<"Measurement", 'Float'>
   readonly arms: Prisma.FieldRef<"Measurement", 'Float'>

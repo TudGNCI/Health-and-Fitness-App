@@ -2,8 +2,8 @@
 import { SignIn } from '@clerk/nextjs';
 
 export default function Page() {
-  return (
-    <div className="flex h-[66.66vh] items-center justify-center pt-40">
+    return (
+        <div className="flex h-[66.66vh] items-center justify-center pt-40">
       <SignIn
         appearance={{
           variables: {
@@ -13,5 +13,5 @@ export default function Page() {
         }}
       />
     </div>
-  );
+    );
 }

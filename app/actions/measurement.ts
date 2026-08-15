@@ -1,49 +1,74 @@
 'use server';
 import { prisma } from '@/lib/prisma';
 import { revalidatePath } from 'next/cache';
-import { auth } from '@clerk/nextjs/server';
+import { redirect } from 'next/navigation';
+import { currentUser } from '@clerk/nextjs/server';
 
+/**
+ * Data is saved for each individual user.
+ * Each user can save only 2 records.
+ */
 export async function saveMeasurement(formData: FormData) {
-  const { userId } = await auth();
+    // Ensuring that only the logged in user can save data.
+    const user = await currentUser()
 
-  if (!userId) {
-    throw new Error('Login to record your body measurements');
-  }
+    if (!user) {
+        throw new Error("Unauthorized");
+    }
 
-  const count = await prisma.measurement.count({
-    where: { userId },
-  });
+    //Ensuring submitted data is converted into numbers.
+    const chest = parseFloat(formData.get("chest") as string);
+    const waist = parseFloat(formData.get("waist") as string);
+    const arms = parseFloat(formData.get("arms") as string);
+    const hips = parseFloat(formData.get("hips") as string);
 
-  if (count >= 2) {
-    throw new Error('Only two records allowed');
-  }
+    //Ensures a maximum limit of only 2 records for the logged in user.
+    const existingCount = await prisma.measurement.count({
+        where: {
+            clerkId: user.id
+        },
+    });
 
-  const chest = parseFloat(formData.get('chest') as string);
-  const waist = parseFloat(formData.get('waist') as string);
-  const arms = parseFloat(formData.get('arms') as string);
-  const hips = parseFloat(formData.get('arms') as string);
+    if (existingCount >= 2) {
+        throw new Error("Only 2 records allowed");
+    }
 
-  if (isNaN(chest) || isNaN(waist) || isNaN(arms) || isNaN(hips)) {
-    throw new Error('Invalid value');
-  }
+    //Creates the record associated with the user's clerk ID
+    await prisma.measurement.create({
+        data: {
+            clerkId: user.id,
+            chest,
+            waist,
+            arms,
+            hips,
+        }
+    });
 
-  await prisma.measurement.create({
-    data: { chest, waist, arms, hips, userId },
-  });
-
-  revalidatePath('/bodymeasurementlog');
+    //The UI is updated and the page is refreshed via redirect
+    revalidatePath("/bodymeasurementlog");
+    redirect("/bodymeasurementlog");
 }
 
+/**
+ * Allows for the deletion of a record.
+ * Only authorized users can delete a record.
+ */
 export async function deleteMeasurement(id: number) {
-  const { userId } = await auth();
+    // Ensuring that only logged in users are allowed access.
+    const user = await currentUser();
 
-  if (!userId) {
-    throw new Error('Unauthorized');
-  }
+    if (!user) {
+        throw new Error("Unauthorized");
+    }
 
-  await prisma.measurement.delete({
-    where: { id, userId },
-  });
+    //Ensures only the user's data is deleted.
+    await prisma.measurement.delete({
+        where: {
+            id,
+            clerkId: user.id
+        },
+    });
 
-  revalidatePath('/bodymeasurementlog');
+    //Page is refreshed to ensure deletion.
+    revalidatePath("/bodymeasurementlog");
 }

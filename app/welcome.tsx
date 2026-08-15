@@ -3,10 +3,13 @@
 import { useUser } from '@clerk/nextjs'
 
 export default function Welcome() {
-  const { isSignedIn, user } = useUser()
+    const {
+        isSignedIn,
+        user
+    } = useUser()
 
-  if(isSignedIn)
-  return (
-  <div className="pt-[5vh] text-5xl">Welcome {user?.username}!</div>
-  )
+    if (isSignedIn)
+        return (
+            <div className="pt-[5vh] text-5xl">Welcome {user?.username}!</div>
+        )
 }
