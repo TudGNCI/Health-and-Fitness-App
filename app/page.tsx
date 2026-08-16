@@ -5,6 +5,7 @@ import MyButtons from './buttons'
 import Welcome from './welcome'
 
 export default async function Page() {
+    // guards routes by checking authentication status.
     await auth.protect()
 
     return (

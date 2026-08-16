@@ -6,12 +6,13 @@ import { redirect } from "next/navigation"
 
 
 export default async function Page() {
-
+    // Checks user identity otherwise redirects them to sign in page
     const user = await currentUser();
     if (!user) {
         redirect("/sign-in")
     }
 
+    // Fetches the latest set of measurements of the logged in user
     const measurements = await prisma.measurement.findMany({
         where: {
             clerkId: user.id
@@ -21,7 +22,7 @@ export default async function Page() {
         },
         take: 2,
     });
-
+    // Makes sure that the user has reached the 2 record limit
     const limit = measurements.length < 2;
 
     return (

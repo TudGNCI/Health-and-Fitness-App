@@ -4,6 +4,7 @@ import { useState, useEffect, useCallback } from "react";
 import { DayPicker } from "@daypicker/react";
 import "@daypicker/react/style.css";
 import { format } from 'date-fns';
+// journal page imported for data mutations and fetching
 import { saveJournalEntry, getJournalEntry, getEntriesWithContent } from "../actions/journal";
 
 
@@ -13,15 +14,13 @@ export default function Page() {
     const [entryDate, setEntryDate] = useState < Set < string >> (new Set())
     const [isSaving, setIsSaving] = useState(false)
 
+    //Fetching existing dates that hold data entries
     useEffect(() => {
         getEntriesWithContent().then((dates) =>
             setEntryDate(new Set(dates)))
     }, [])
 
-    useEffect(() => {
-        console.log('Entry Dates:', Array.from(entryDate))
-    }, [entryDate])
-
+    //Fetching and displaying the date for the entry of the selected date
     const handleDateSelect = useCallback(async (date: Date | undefined) => {
         setSelectedDay(date)
         if (date) {
@@ -32,7 +31,8 @@ export default function Page() {
             setJournalEntry('')
         }
     }, [])
-
+    
+    //Autosaves journal entry
     useEffect(() => {
         if (!selectedDay) return;
 
@@ -59,7 +59,7 @@ export default function Page() {
                 setIsSaving(false)
             }
         }, 200)
-
+        //Ensures a new timer is started every time a new character is added to the text area
         return () => clearTimeout(timer)
     }, [journalEntry, selectedDay])
 
